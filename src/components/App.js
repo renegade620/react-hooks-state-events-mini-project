@@ -10,12 +10,19 @@ console.log({ CATEGORIES, TASKS });
 function App() {
 
   const [tasks, setTasks] = useState(TASKS);
+
+  // delete function
+  function handleDeleteTask(index) {
+    const modTasks = [...tasks];
+    modTasks.splice(index, 1);
+    setTasks(modTasks);
+  }
   return (
     <div className="App">
       <h2>My tasks</h2>
       <CategoryFilter />
       <NewTaskForm />
-      <TaskList tasks={tasks} />
+      <TaskList tasks={tasks} onDeleteTask={handleDeleteTask} />
     </div>
   );
 }
