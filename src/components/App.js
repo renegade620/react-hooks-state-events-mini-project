@@ -17,10 +17,16 @@ function App() {
     modTasks.splice(index, 1);
     setTasks(modTasks);
   }
+
+  // category change function
+  function handleCategoryChange(category) {
+    const filteredTasks = category === "All" ? TASKS : TASKS.filter(task => task.category === category)
+  setTasks(filteredTasks);
+  }
   return (
     <div className="App">
       <h2>My tasks</h2>
-      <CategoryFilter />
+      <CategoryFilter categories={CATEGORIES} onCategoryChange={handleCategoryChange} />
       <NewTaskForm />
       <TaskList tasks={tasks} onDeleteTask={handleDeleteTask} />
     </div>
